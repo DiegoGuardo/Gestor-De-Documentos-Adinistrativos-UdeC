@@ -1,0 +1,101 @@
+/* Header amarillo (fijo arriba) */
+.header-bar {
+  position: fixed;      /* fijo para que no empuje layout */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #FFD700;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 50;
+}
+.header-bar .logo-header { height: 50px; }
+
+/* Root que ocupa toda la ventana (debajo del header) */
+.login-root {
+  position: fixed;   /* fijo para evitar scroll del documento */
+  inset: 0;          /* top:0; right:0; bottom:0; left:0 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  /* imagen de fondo: usa la ruta absoluta desde la raíz */
+  background: url('/assets/img/fondo.jpeg') no-repeat center center;
+  background-size: cover;      /* la imagen cubre todo */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+/* Capa overlay para opacar (tenue) el fondo */
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28); /* ajusta el 0.28 a lo que quieras (0.0-1.0) */
+  z-index: 11;
+  pointer-events: none;
+  backdrop-filter: none;
+}
+
+/* Card (panel) encima del overlay */
+.login-card {
+  position: relative;
+  z-index: 20;
+  width: 420px;
+  max-width: calc(100% - 40px);
+  padding: 28px;
+  border-radius: 14px;
+  /* panel con 10% de transparencia: white con alpha 0.9 => 10% transparente */
+  background: rgba(255,255,255,0.90);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+  text-align: center;
+  transform: translateY(0); /* evita subpixel issues que generan scroll */
+}
+
+/* Ajustes visuales del contenido */
+.escudo { width: 90px; margin-bottom: 12px; }
+h2 { font-size: 1.35rem; margin: 0; color: #111; }
+.fundada, .lema { margin: 4px 0; color: #444; font-size: 0.9rem; }
+
+/* Inputs y select */
+form select, form input[type="text"], form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* Botón amarillo */
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background: #FFD700;
+  color: #000;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Mensaje de error */
+.error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  text-align: left;
+  margin-top: -8px;
+}
+
+/* Evitar cualquier overflow interno que genere scroll */
+.login-card, .login-root, .header-bar { overflow: visible; }
+
+/* Responsive: si la pantalla es muy pequeña, reducimos card para que quepa sin scroll */
+@media (max-height: 640px) {
+  .login-card { width: 92%; padding: 18px; }
+  .header-bar { height: 60px; }
+}

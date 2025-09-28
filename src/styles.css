@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+/* ------------ GLOBAL RESET y control de scroll ------------- */
+html, body, app-root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* elimina todas las barras de scroll */
+}
+
+/* opcional: evita que focus outlines rompan el diseño (puedes quitarlo si no te gusta) */
+* { box-sizing: border-box; }
